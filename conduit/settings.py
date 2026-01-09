@@ -62,9 +62,9 @@ WSGI_APPLICATION = 'conduit.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB','conduit'),
-        'USER': os.environ.get('POSTGRES_USER','conduit'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD','conduit123'),
+        'NAME': os.environ['POSTGRES_DB'],
+        'USER': os.environ['POSTGRES_USER'],
+        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
         'HOST': 'db',
         'PORT': '5432',
     }
