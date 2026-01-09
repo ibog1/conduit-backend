@@ -58,16 +58,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'conduit.wsgi.application'
 
 # POSTGRES DB
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'postgres'),
-        'USER': os.environ.get('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
+        'NAME': os.environ.get('POSTGRES_DB','conduit'),
+        'USER': os.environ.get('POSTGRES_USER','conduit'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD','conduit123'),
         'HOST': 'db',
         'PORT': '5432',
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
