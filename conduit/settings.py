@@ -67,6 +67,9 @@ DATABASES = {
         'PASSWORD': os.environ['POSTGRES_PASSWORD'],
         'HOST': 'db',
         'PORT': '5432',
+        'OPTIONS': {
+            'options': '-c timezone=UTC'
+        },
     }
 }
 
