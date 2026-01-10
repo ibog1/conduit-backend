@@ -68,7 +68,7 @@ DATABASES = {
         'HOST': 'db',
         'PORT': '5432',
         'OPTIONS': {
-            'options': '-c timezone=UTC'
+            'options': '-c timezone=Europe/Berlin'
         },
     }
 }
