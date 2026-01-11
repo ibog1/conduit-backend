@@ -5,10 +5,11 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = '2^f+3@v7$v1f8yt0!s)3-1t$)tlp+xm17=*g))_xoi&&9m#2a&'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
-ALLOWED_HOSTS = ['116.203.194.189', 'localhost', 'backend', '0.0.0.0', '*']
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '*').split(',')
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -87,12 +88,8 @@ USE_TZ = False
 STATIC_URL = '/static/'
 STATIC_ROOT = '/static/'
 
-CORS_ORIGIN_WHITELIST = (
-    '0.0.0.0:4000',
-    'localhost:4000',
-    'localhost:8282',
-    '116.203.194.189:8282',
-)
+CORS_ORIGIN_WHITELIST = os.environ.get('CORS_ORIGINS', 'localhost:8282,0.0.0.0:4000').split(',')
+
 
 AUTH_USER_MODEL = 'authentication.User'
 
