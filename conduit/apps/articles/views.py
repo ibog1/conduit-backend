@@ -14,8 +14,8 @@ from .serializers import ArticleSerializer, CommentSerializer, TagSerializer
 class ArticleViewSet(mixins.CreateModelMixin, 
                      mixins.ListModelMixin,
                      mixins.RetrieveModelMixin,
-                     mixins.DestroyModelMixin,
                      mixins.UpdateModelMixin,
+                     mixins.DestroyModelMixin,
                      viewsets.GenericViewSet):
 
     lookup_field = 'slug'
