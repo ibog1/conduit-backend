@@ -109,14 +109,12 @@ class ArticleViewSet(mixins.CreateModelMixin,
 
 
     def destroy(self, request, slug):
-        serializer_context = {'request': request}
-
         try:
-            serializer_instance = self.queryset.get(slug=slug)
+            article = self.queryset.get(slug=slug)
         except Article.DoesNotExist:
-            raise NotFound('An article with this slug does not exist.')
-
-        serializer_instance.delete()
+            raise NotFound('Article not found.')
+        
+        article.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
