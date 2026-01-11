@@ -107,7 +107,7 @@ class ArticleViewSet(mixins.CreateModelMixin,
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
+                         
     def destroy(self, request, slug):
         try:
             article = self.queryset.get(slug=slug)
@@ -115,7 +115,7 @@ class ArticleViewSet(mixins.CreateModelMixin,
             raise NotFound('Article not found.')
         
         article.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
 
 
 class CommentsListCreateAPIView(generics.ListCreateAPIView):
