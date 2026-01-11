@@ -108,6 +108,18 @@ class ArticleViewSet(mixins.CreateModelMixin,
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+    def destroy(self, request, slug):
+        serializer_context = {'request': request}
+
+        try:
+            serializer_instance = self.queryset.get(slug=slug)
+        except Article.DoesNotExist:
+            raise NotFound('An article with this slug does not exist.')
+
+        serializer_instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 class CommentsListCreateAPIView(generics.ListCreateAPIView):
     lookup_field = 'article__slug'
     lookup_url_kwarg = 'article_slug'
