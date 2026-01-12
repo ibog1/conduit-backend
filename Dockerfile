@@ -17,4 +17,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["sh", "-c", "while ! nc -z db 5432; do echo 'Waiting DB...'; sleep 1; done && python manage.py migrate && gunicorn -w 4 -b 0.0.0.0:5000 conduit.wsgi:application"]
+ENTRYPOINT ["./entrypoint.sh"]
