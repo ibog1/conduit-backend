@@ -14,6 +14,8 @@ from .serializers import ArticleSerializer, CommentSerializer, TagSerializer
 class ArticleViewSet(mixins.CreateModelMixin, 
                      mixins.ListModelMixin,
                      mixins.RetrieveModelMixin,
+                     mixins.UpdateModelMixin,
+                     mixins.DestroyModelMixin,
                      viewsets.GenericViewSet):
 
     lookup_field = 'slug'
@@ -104,6 +106,16 @@ class ArticleViewSet(mixins.CreateModelMixin,
         serializer.save()
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+                         
+    def destroy(self, request, slug):
+        try:
+            article = self.queryset.get(slug=slug)
+        except Article.DoesNotExist:
+            raise NotFound('Article not found.')
+        
+        article.delete()
+        return Response({}, status=status.HTTP_204_NO_CONTENT)
 
 
 class CommentsListCreateAPIView(generics.ListCreateAPIView):

@@ -4,6 +4,7 @@ from .models import Profile
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(source='user.id', read_only=True)
     username = serializers.CharField(source='user.username')
     bio = serializers.CharField(allow_blank=True, required=False)
     image = serializers.SerializerMethodField()
@@ -11,8 +12,9 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ('username', 'bio', 'image', 'following',)
+        fields = ('id', 'username', 'bio', 'image', 'following',)
         read_only_fields = ('username',)
+
 
     def get_image(self, obj):
         if obj.image:
